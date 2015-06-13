@@ -14,12 +14,18 @@ use Illuminate\Database\Eloquent\Model;
 class Config extends Model
 {
     /**
-     *
      * Disable updated_at and created_at columns
      *
      * @var boolean
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['key', 'value', 'group'];
 
     /**
      * The database table used by the model.

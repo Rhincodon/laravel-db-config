@@ -42,8 +42,7 @@ class DbConfig
     public function set($key, $value)
     {
         $config = $this->getConfig($key, true);
-        $config->value  = $value;
-        $config->save();
+        $config->update(['value' => $value]);
     }
 
     /**
@@ -69,12 +68,10 @@ class DbConfig
     private function getConfig($key, $create = false)
     {
         list($group, $key) = $this->splitKey($key);
-        $config = Config::where('group', $group)->where('key', $key)->first();
+        $config = Config::where(['group' => $group, 'key' => $key])->first();
 
         if ($config === null && $create) {
-            $config        = new Config();
-            $config->key   = $key;
-            $config->group = $group;
+            Config::create(['key' => $key, 'group' => $group]);
         }
 
         return $config;
