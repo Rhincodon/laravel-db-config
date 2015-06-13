@@ -11,7 +11,6 @@ use Illuminate\Database\Schema\Blueprint;
  */
 class CreateConfigTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -20,16 +19,10 @@ class CreateConfigTable extends Migration
     public function up()
     {
         \Schema::create('config', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
             $table->increments('id');
-            $table->string('key')
-                  ->unique();
+            $table->string('key');
             $table->string('value');
-            $table->string('group');
-            $table->enum('type', ['int', 'bool', 'string']);
-            $table->unsignedInteger('modified_by_user_id');
-            $table->timestamp('modified_at');
+            $table->string('group')->nullable();
         });
     }
 

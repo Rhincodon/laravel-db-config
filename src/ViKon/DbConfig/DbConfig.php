@@ -2,7 +2,6 @@
 
 namespace ViKon\DbConfig;
 
-use Carbon\Carbon;
 use ViKon\DbConfig\Models\Config;
 
 /**
@@ -43,13 +42,7 @@ class DbConfig
     public function set($key, $value)
     {
         $config = $this->getConfig($key, true);
-
-        // If no user then modified_by is not modified !
-        if (\Auth::check()) {
-            $config->modified_by = \Auth::user()->id;
-        }
-        $config->modified_at = new Carbon();
-        $config->value       = $value;
+        $config->value  = $value;
         $config->save();
     }
 
