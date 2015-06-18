@@ -71,7 +71,7 @@ class DbConfig
         $config = Config::where(['group' => $group, 'key' => $key])->first();
 
         if ($config === null && $create) {
-            Config::create(['key' => $key, 'group' => $group]);
+            return Config::create(['key' => $key, 'group' => $group]);
         }
 
         return $config;
