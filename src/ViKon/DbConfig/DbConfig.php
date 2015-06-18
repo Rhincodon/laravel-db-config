@@ -54,7 +54,7 @@ class DbConfig
      */
     public function getConfigByGroup($group)
     {
-        return Config::where('group', $group)->all();
+        return Config::where('group', $group)->get();
     }
 
     /**
